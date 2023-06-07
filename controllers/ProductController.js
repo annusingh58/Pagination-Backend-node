@@ -10,8 +10,8 @@ export const addProduct =async(req,res)=>{
         if(!Price) return res.send("Price is required");
 
         const product = new Products({
-            name: Name,
-            price: Price
+            Name,
+            Price
             
         });
 
