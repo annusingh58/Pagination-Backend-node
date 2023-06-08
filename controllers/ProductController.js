@@ -31,34 +31,61 @@ export const addProduct =async(req,res)=>{
 
 
 export const paginationproduct = async(req,res)=>{
+     // destructure page and limit and set default values
+    //  const {page=1,limit=5}=req.body;
     try{
+             const {page=4,limit=5}=req.body;
 
-    }
+            const info =await Products.find({})
+            .limit(limit*1)
+            .skip((page-1)*limit)
+            .exec();
+            
+            const count=await Products.countDocuments();
+            res.send ({
+                info,
+                totalpages :Math.ceil(count/limit),
+                currentpage:page
+
+    });
+}
     catch(error){
-        return res.send(error);
+        return res.send(error. message);
     }
 }
 
 
- export const getAllProducts =async(req,res)=>{
-    apiData=apiData.sort(sortfix);
-    if (select){
-         let spectFix =select.split(",").join("");
-         apiData=apiData.select(spectFix);
+// app.get('/posts', async (req, res) => {
+//     // destructure page and limit and set default values
+//     const { page = 1, limit = 10 } = req.query;
+  
+//     try {
+//       // execute query with page and limit values
+//       const posts = await Posts.find()
+//         .limit(limit * 1)
+//         .skip((page - 1) * limit)
+//         .exec();
+  
+//       // get total documents in the Posts collection 
+//       const count = await Posts.countDocuments();
+  
+//       // return response with posts, total pages, and current page
+//       res.json({
+//         posts,
+//         totalPages: Math.ceil(count / limit),
+//         currentPage: page
+//       });
+//     } catch (err) {
+//       console.error(err.message);
+//     }
+//   });
 
-    }
-    let page=Number(req.query.page) ||1;
-    let limit=Number(req.query.page) ||5;
-
-    let skip = (page-1)*limit;
-    apiData=apiData.skips(skip).limit(limit);
-    console.log(queryObject);
-    ConstmyData=await apiData;
-    res.send(200).json({myData,nbhits:myData.length});
 
 
 
-};
+
+
+
 
 
 

@@ -19,5 +19,4 @@ mongoose.connect('mongodb+srv://annusingh:anusingh58@cluster0.md93vry.mongodb.ne
 .then(()=>console.log("db is  connected"))
 .catch((error)=> console.log("db error =>",err))
 
-
-app.listen(6000,()=> console.log ("working on 6000"))
+app.listen(9001,()=> console.log ("working on 6000"))
