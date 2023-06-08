@@ -16,7 +16,7 @@ app.use('/api/v3',router);
 mongoose.connect('mongodb+srv://annusingh:anusingh58@cluster0.md93vry.mongodb.net/pagination')
 
 
-.then(()=>console.log("db connected"))
+.then(()=>console.log("db is  connected"))
 .catch((error)=> console.log("db error =>",err))
 
 

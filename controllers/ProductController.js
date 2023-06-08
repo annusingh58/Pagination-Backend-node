@@ -40,6 +40,26 @@ export const paginationproduct = async(req,res)=>{
 }
 
 
+ export const getAllProducts =async(req,res)=>{
+    apiData=apiData.sort(sortfix);
+    if (select){
+         let spectFix =select.split(",").join("");
+         apiData=apiData.select(spectFix);
+
+    }
+    let page=Number(req.query.page) ||1;
+    let limit=Number(req.query.page) ||5;
+
+    let skip = (page-1)*limit;
+    apiData=apiData.skips(skip).limit(limit);
+    console.log(queryObject);
+    ConstmyData=await apiData;
+    res.send(200).json({myData,nbhits:myData.length});
+
+
+
+};
+
 
 
 // app.get('/', async (req, res) => {
