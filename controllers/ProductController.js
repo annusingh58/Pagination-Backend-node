@@ -40,10 +40,10 @@ export const addProduct =async(req,res)=>{
 }
 
 
-export const filter =(req,res)=> {
+export const filterProduct =(req,res)=> {
     try{
         const  filters =req.query;
-        const filteredUsers= Products.filters(user=>{
+        const filteredUsers= addProduct.filters(user=>{
             let  isValid = true
             for(key in filters){
                 console.log(key, user[key], filters[key]);
@@ -55,7 +55,7 @@ export const filter =(req,res)=> {
          res.send(filteredUsers);
 
 
-        });
+        }
 
     
     catch(error){
@@ -68,18 +68,18 @@ export const filter =(req,res)=> {
 
 
 // Assign route
-app.use('/', (req, res, next) => {
-    const filters = req.query;
-    const filteredUsers = data.filter(user => {
-      let isValid = true;
-      for (key in filters) {
-        console.log(key, user[key], filters[key]);
-        isValid = isValid && user[key] == filters[key];
-      }
-      return isValid;
-    });
-    res.send(filteredUsers);
-  });
+// app.use('/', (req, res, next) => {
+//     const filters = req.query;
+//     const filteredUsers = data.filter(user => {
+//       let isValid = true;
+//       for (key in filters) {
+//         console.log(key, user[key], filters[key]);
+//         isValid = isValid && user[key] == filters[key];
+//       }
+//       return isValid;
+//     });
+//     res.send(filteredUsers);
+//   });
 
 
 export const paginationproduct = async(req,res)=>{
@@ -140,16 +140,3 @@ export const paginationproduct = async(req,res)=>{
 
 
 
-
-// app.get('/', async (req, res) => {
-//     try {
-//         // Adding Pagination
-//         const limitValue = req.query.limit || 2;
-//         const skipValue = req.query.skip || 0;
-//         const posts = await postModel.find()
-//             .limit(limitValue).skip(skipValue);
-//         res.status(200).send(posts);
-//     } catch (e) {
-//         console.log(e);
-//     }
-// });
