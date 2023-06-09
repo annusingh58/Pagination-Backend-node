@@ -3,7 +3,12 @@ import { Schema } from "mongoose";
 
 const Product= new Schema({
     Name:String,
-    Price:Number
+    Price:Number,
+    Colour:String,
+    Brand:String,
+    size:String,
+    fabric:String,
+    catergory:String
 });
 
 
