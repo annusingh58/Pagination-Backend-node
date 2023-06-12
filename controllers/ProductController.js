@@ -40,46 +40,140 @@ export const addProduct =async(req,res)=>{
 }
 
 
-export const filterProduct =(req,res)=> {
-    try{
-        const  filters =req.query;
-        const filteredUsers= addProduct.filters(user=>{
-            let  isValid = true
-            for(key in filters){
-                console.log(key, user[key], filters[key]);
-                   isValid = isValid && user[key] == filters[key];
-            }
-             return isValid;
-
-            });
-         res.send(filteredUsers);
 
 
+
+export const filterColour = async (req, res) => {
+    try {
+        const { Colour } = req.body;
+        if (!Colour) return res.send("Colour is required")
+        const product = await Products.find({ Colour }).exec();
+        if (!product.length) {
+            res.send("product not find");
+        } else {
+           res.send(product)
         }
-
-    
-    catch(error){
-        return res.send(error);
+    } catch (error) {
+        return res.send(error)
     }
-
 }
 
 
 
 
-// Assign route
-// app.use('/', (req, res, next) => {
-//     const filters = req.query;
-//     const filteredUsers = data.filter(user => {
-//       let isValid = true;
-//       for (key in filters) {
-//         console.log(key, user[key], filters[key]);
-//         isValid = isValid && user[key] == filters[key];
-//       }
-//       return isValid;
-//     });
-//     res.send(filteredUsers);
-//   });
+export const filterProductsize = async (req, res) => {
+    try{
+        const{ size } = req.body;
+    if (!size) return res.send("size is required")
+    const product = await Products.find({ size }).exec();
+    if (!product.length) {
+        res.send("product not find");
+    } else {
+       res.send(product)
+    }
+} catch (error) {
+    return res.send(error)
+}
+}
+
+
+
+
+
+
+
+export const filtercatergory = async (req, res) => {
+    const { catergory } = req.body;
+
+    try {
+        if (!catergory) return res.send("catergory is required")
+        const product = await Products.find({ catergory }).exec();
+        if (!product.length) {
+            res.send("product not find");
+        } else {
+           res.send(product)
+        }
+    } catch (error) {
+        return res.send(error)
+    }
+       
+}
+
+
+
+
+
+export const filterBrand = async (req, res) => {
+    try {
+        const { Brand } = req.body;
+        if (!Brand) return res.send("Brand is required")
+        const product = await Products.find({ Brand }).exec();
+        if (!product.length) {
+            res.send("product not find");
+        } else {
+           res.send(product)
+        }
+    } catch (error) {
+        return res.send(error)
+    }
+}
+
+
+
+export const filterfabric = async (req, res) => {
+    try {
+        const { fabric } = req.body;
+        if (!fabric) return res.send("fabric is required")
+        const product = await Products.find({ fabric }).exec();
+        if (!product.length) {
+            res.send("product not find");
+        } else {
+           res.send(product)
+        }
+    } catch (error) {
+        return res.send(error)
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// export const filterProduct =(req,res)=> {
+//     try{
+//         const  filters =req.query;
+//         const filteredUsers= addProduct.filters(user=>{
+//             let  isValid = true
+//             for(key in filters){
+//                 console.log(key, user[key], filters[key]);
+//                    isValid = isValid && user[key] == filters[key];
+//             }
+//              return isValid;
+
+//             });
+//          res.send(filteredUsers);
+
+
+//         }
+
+    
+//     catch(error){
+//         return res.send(error);
+//     }
+
+// }
+
+
+
+
+
 
 
 export const paginationproduct = async(req,res)=>{
